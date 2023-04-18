@@ -1,8 +1,9 @@
 package Workout;
 
+
 public class Goal {
 
-    enum WeightGoal {
+    public enum WeightGoal {
         MAINTAIN,
         LOOSE,
         GAIN
