@@ -6,7 +6,7 @@ import Workout.*;
 
 import java.util.Scanner;
 
-import static NutriApp.MenuActions.updateWeight;
+import static NutriApp.MenuActions.*;
 
 public class NUTRiApp {
 
@@ -56,7 +56,7 @@ public class NUTRiApp {
         // TODO: make PTUI work with back end
 
         System.out.println("\nCongratulations! Your account has been created.");
-        menuOfActions(reader);
+        menuOfActions(reader, user);
     }
 
     /**
@@ -82,14 +82,14 @@ public class NUTRiApp {
         System.out.println("Successfully Logged In!");
 
         System.out.println("Has your weight changed since your last login?");
-        updateWeight(reader);
-        menuOfActions(reader);
+        updateWeight(reader, user);
+        menuOfActions(reader, user);
     }
 
     /**
      * Allows the user to choose between the actions the app offers
      */
-    public static void menuOfActions(Scanner reader) {
+    public static void menuOfActions(Scanner reader, Account user) {
         // start the while loop for options
         boolean exit = false;
         while (!exit) {
@@ -102,32 +102,43 @@ public class NUTRiApp {
             System.out.println("3. View Shopping List ");
             System.out.println("4. Update weight ");
             System.out.println("5. Change weight goal ");
-            System.out.println("6. Exit and Logout ");
+            System.out.println("6. Eat Food ");
+            System.out.println("7. Exit and Logout ");
 
             int selection = getIntResponse(reader, "\nSelection: ");
 
             switch (selection) {
                 case 1:
                     // Log Workout
+                    logWorkout(reader, user);
                     break;
 
                 case 2:
                     // Add New Food
+                    addNewFood(reader);
                     break;
 
                 case 3:
                     // View Shopping List
+                    viewShoppingList(reader, user);
                     break;
 
                 case 4:
                     // Update weight
+                    updateWeight(reader, user);
                     break;
 
                 case 5:
                     //change weight goal
+                    changeWeightGoal(reader, user);
                     break;
 
-                case 8:
+                case 6:
+                    // eat food
+                    eatFood(reader);
+                    break;
+
+                case 7:
                     //exit
                     exit = true;
                     System.out.println("\nLogging out...");

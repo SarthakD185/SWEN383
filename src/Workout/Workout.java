@@ -7,6 +7,10 @@ public class Workout {
     private String time;
     private String date;
 
+    public Workout(int minutes, String intensity, String time, String date) {
+
+    }
+
     public void LogWorkout() {
 
     }

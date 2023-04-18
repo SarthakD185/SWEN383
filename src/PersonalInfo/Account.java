@@ -68,4 +68,29 @@ public class Account {
     public void setShoppingList(ShoppingList list) {
         this.shoppingList = list;
     }
+
+    /**
+     * change the weight
+     * @param newWeight - new weight
+     */
+    public void changeWeight(Double newWeight) {
+        myDetails.setWeight(newWeight);
+    }
+
+    /**
+     * change the weight goal
+     * @param targetWeight - new target weight
+     */
+    public void changeWeightGoal(Double targetWeight) {
+        mygoal.setTargetWeight(targetWeight);
+
+        double currentWeight = myDetails.getWeight();
+        if ( currentWeight < targetWeight) {
+            mygoal.setGoalType(Goal.WeightGoal.GAIN);
+        } else if (currentWeight == targetWeight) {
+            mygoal.setGoalType(Goal.WeightGoal.MAINTAIN);
+        } else {
+            mygoal.setGoalType(Goal.WeightGoal.LOOSE);
+        }
+    }
 }
