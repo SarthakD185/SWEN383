@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class MenuActions {
 
     // 1. Log Workout
-    public static void logWorkout(Scanner reader, Account user) {
+    public static void logWorkout(Scanner reader) {
         System.out.println("\n\n--  Workout --");
 
         int minutes;
@@ -78,7 +78,7 @@ public class MenuActions {
     }
 
     // 3. view shoppingList
-    public static void viewShoppingList(Scanner reader, Account user) {
+    public static void viewShoppingList(Scanner reader) {
         reader = new Scanner(System.in);
         ShoppingList sl = new ShoppingList();
         
@@ -143,21 +143,21 @@ public class MenuActions {
     
 
     // 4. update weight
-    public static void updateWeight(Scanner reader, Account user) {
+    public static void updateWeight(Scanner reader) {
         System.out.println("\n\n -- Update Weight --");
 
         Double weight = getDoubleResponse(reader, "What is your current weight? ");
-        user.changeWeight(weight);
+        //user.changeWeight(weight);
         System.out.println("Weight has been changed.");
 
     }
 
     // 5. change weight goal
-    public static void changeWeightGoal(Scanner reader, Account user) {
+    public static void changeWeightGoal(Scanner reader) {
         System.out.println("\n\n -- Change Weight Goal --");
 
         Double weight = getDoubleResponse(reader, "What is your target weight goal? ");
-        user.changeWeight(weight);
+        //user.changeWeight(weight);
         System.out.println("Target Weight has been changed.");
     }
 

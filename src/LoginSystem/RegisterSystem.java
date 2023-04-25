@@ -1,16 +1,13 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+package LoginSystem;
+
+import java.io.*;
 import java.util.HashMap;
 
 public class RegisterSystem {
     private HashMap<String, String> users;
 
-    public RegisterSystem(HashMap<String, String> existingUsers) {
+    public RegisterSystem() {
         users = new HashMap<>();
-        for (String username : existingUsers.keySet()) {
-            users.put(username, existingUsers.get(username));
-        }
     }
 
     public void register(String username, String password) {
@@ -18,7 +15,7 @@ public class RegisterSystem {
             System.out.println("Username already exists. Please choose a different username.");
         } else {
             users.put(username, password);
-            saveUsersToFile("users.txt");
+            saveUsersToFile("./src/users.txt");
             System.out.println("Registration successful!");
         }
     }
@@ -26,7 +23,7 @@ public class RegisterSystem {
     private void saveUsersToFile(String filename) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             for (String username : users.keySet()) {
-                writer.write(username + ":" + users.get(username) + "\n");
+                writer.append(username + ":" + users.get(username) + "\n");
             }
         } catch (IOException e) {
             System.out.println("Error writing file: " + filename);

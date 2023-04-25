@@ -1,14 +1,11 @@
 package NutriApp;
 
+import static NutriApp.MenuActions.*;
 import PersonalInfo.*;
 import Workout.*;
-//import Registration.*;
+import LoginSystem.*;
 
 import java.util.Scanner;
-import Register.*;
-
-import static NutriApp.MenuActions.*;
-import Register.LoginSystem;
 
 public class NUTRiApp {
 
@@ -18,7 +15,7 @@ public class NUTRiApp {
      */
      
     
-    public static void register(Scanner reader, Account user) {
+    public static void register(Scanner reader) {
         // TODO: make any PTUI changes you want
 
         System.out.println("\n\n -- Register --");
@@ -61,17 +58,18 @@ public class NUTRiApp {
 
         // create new user
         System.out.println("Creating account...");
-        user = new Account(name, age, height, weight, birthdate, targetWeight, goalType);
-        // TODO: make PTUI work with back end
+        Account user = new Account(name, age, height, weight, birthdate, targetWeight, goalType);
+        RegisterSystem rs = new RegisterSystem();
+        rs.register(newUsername, newPassword);
 
         System.out.println("\nCongratulations! Your account has been created.");
-        menuOfActions(reader, user);
+        menuOfActions(reader);
     }
 
     /**
      * Prompts the user to log in to their acount and logs them in
      */
-    public static void login(Scanner reader, Account user) {
+    public static void login(Scanner reader) {
         // TODO: make any PTUI changes you want
         LoginSystem ls = new LoginSystem();
         
@@ -84,23 +82,18 @@ public class NUTRiApp {
         username = reader.next();
         System.out.print("Enter your password: ");
         password = reader.next();
-        ls.login(username, password);
 
-        System.out.println("Logging you in...");
-        // TODO: make PTUI work with back end
-        // TODO: instantiate user with their data
-
-        System.out.println("Successfully Logged In!");
-
-        System.out.println("Has your weight changed since your last login?");
-        updateWeight(reader, user);
-        menuOfActions(reader, user);
+        if (ls.login(username, password) == true) {
+            System.out.println("Has your weight changed since your last login?");
+            updateWeight(reader);
+            menuOfActions(reader);
+        }
     }
 
     /**
      * Allows the user to choose between the actions the app offers
      */
-    public static void menuOfActions(Scanner reader, Account user) {
+    public static void menuOfActions(Scanner reader) {
         // start the while loop for options
         boolean exit = false;
         while (!exit) {
@@ -121,7 +114,7 @@ public class NUTRiApp {
             switch (selection) {
                 case 1:
                     // Log Workout
-                    logWorkout(reader, user);
+                    logWorkout(reader);
                     break;
 
                 case 2:
@@ -131,17 +124,17 @@ public class NUTRiApp {
 
                 case 3:
                     // View Shopping List
-                    viewShoppingList(reader, user);
+                    viewShoppingList(reader);
                     break;
 
                 case 4:
                     // Update weight
-                    updateWeight(reader, user);
+                    updateWeight(reader);
                     break;
 
                 case 5:
                     //change weight goal
-                    changeWeightGoal(reader, user);
+                    changeWeightGoal(reader);
                     break;
 
                 case 6:
@@ -209,7 +202,7 @@ public class NUTRiApp {
         System.out.println("Welcome To NutriApp");
 
         // set up a user Account, it will be filled in login or register
-        Account user = null;
+        //Account user = null;
 
         Scanner reader = new Scanner(System.in);
         String answer = "";
@@ -218,9 +211,9 @@ public class NUTRiApp {
         System.out.println("Are you a new user? (y or n) ");
         answer = reader.next();
         if (answer.equalsIgnoreCase("y")) {
-            register(reader, user);
+            register(reader);
         } else {
-            login(reader, user);
+            login(reader);
         }
 
     }

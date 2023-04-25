@@ -1,12 +1,6 @@
-<<<<<<< HEAD:src/Register/LoginSystem.java
-package Register;
-=======
 package LoginSystem;
->>>>>>> 1629693de86adb692be8135e0b147934a254a24d:src/LoginSystem/LoginSystem.java
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 
 public class LoginSystem {
@@ -14,7 +8,7 @@ public class LoginSystem {
 
     public LoginSystem() {
         users = new HashMap<>();
-        loadUsersFromFile("C:/Users/aisha/OneDrive/Desktop/2022-2023/spring/nutriHealth/SWEN383/src");
+        loadUsersFromFile("./src/users.txt");
     }
 
     public void addUser(String username, String password) {
