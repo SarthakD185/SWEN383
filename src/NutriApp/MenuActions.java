@@ -1,4 +1,7 @@
 package NutriApp;
+
+import Food.ShoppingList;
+
 import Food.Food;
 import Workout.Workout;
 import PersonalInfo.*;
@@ -15,6 +18,7 @@ public class MenuActions {
         String intensity;
         String time;
         String date;
+       
 
         minutes = getIntResponse(reader,"How many minutes was your workout? (decimal answer) ");
         System.out.println("What was the intensity? ");
@@ -53,10 +57,69 @@ public class MenuActions {
 
     // 3. view shoppingList
     public static void viewShoppingList(Scanner reader, Account user) {
-        System.out.println("\n\n -- View Shopping List --");
+        reader = new Scanner(System.in);
+        ShoppingList sl = new ShoppingList();
+        
+        while (true) {
+            System.out.println("\n=== Shopping List Manager ===");
+            System.out.println("1. Create a new shopping list");
+            System.out.println("2. Add an item to a shopping list");
+            System.out.println("3. Display a shopping list");
+            System.out.println("4. Display all shopping lists");
+            System.out.println("5. Delete a shopping list");
+            System.out.println("6. Exit");
+            System.out.print("\nEnter your choice: ");
+            
+            int choice = reader.nextInt();
+            reader.nextLine(); // Consume the newline character
+            
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the name of the new shopping list: ");
+                    String listName = reader.nextLine();
+                    sl.createShoppingList(listName);
+                    break;
+                    
+                case 2:
+                    System.out.print("Enter the name of the shopping list: ");
+                    listName = reader.nextLine();
+                    System.out.print("Enter the name of the item to add: ");
+                    String itemName = reader.nextLine();
+                    sl.addItemToShoppingList(listName, itemName);
+                    break;
+                    
+                case 3:
+                    System.out.print("Enter the name of the shopping list to display: ");
+                    listName = reader.nextLine();
+                    sl.displayShoppingList(listName);
+                    break;
+                    
+                case 4:
+                    sl.displayAllShoppingLists();
+                    break;
+                    
+                case 5:
+                    System.out.print("Enter the name of the shopping list to delete: ");
+                    listName = reader.nextLine();
+                    sl.deleteShoppingList(listName);
+                    break;
+                    
+                case 6:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                    break;
+                    
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        }
+    }
+    
+        
         // TODO: create the shopping list
         // TODO: view shopping list
-    }
+    
 
     // 4. update weight
     public static void updateWeight(Scanner reader, Account user) {
