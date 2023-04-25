@@ -1,3 +1,5 @@
+package LoginSystem;
+
 import java.util.Scanner;
 
 public class register {
