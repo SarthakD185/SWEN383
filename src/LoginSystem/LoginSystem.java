@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/Register/LoginSystem.java
 package Register;
+=======
+package LoginSystem;
+>>>>>>> 1629693de86adb692be8135e0b147934a254a24d:src/LoginSystem/LoginSystem.java
 
 import java.io.BufferedReader;
 import java.io.FileReader;
