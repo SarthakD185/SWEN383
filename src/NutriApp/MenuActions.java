@@ -12,26 +12,48 @@ public class MenuActions {
 
     // 1. Log Workout
     public static void logWorkout(Scanner reader, Account user) {
-        System.out.println("\n\n-- Log Workout --");
+        System.out.println("\n\n--  Workout --");
 
         int minutes;
         String intensity;
         String time;
         String date;
-       
 
-        minutes = getIntResponse(reader,"How many minutes was your workout? (decimal answer) ");
-        System.out.println("What was the intensity? ");
-        intensity = reader.next();
-        System.out.println("What was the time? ");
-        time = reader.next();
-        System.out.println("What was the date? ");
-        date = reader.next();
 
-        Workout workout = new Workout(minutes, intensity, time, date);
-        user.addWorkoutHistory(workout);
-    }
+        while (true) {
+            System.out.println("\n--- WORKOUT  ---");
+            System.out.println("1. Log a workout");
+            System.out.println("2. Get a workout suggestion");
+            System.out.println("3. Exit and return to main menu");
+            System.out.print("Enter your choice (1-3): ");
 
+            int choice = reader.nextInt();
+            reader.nextLine(); // consume the newline character
+            Workout wo = new Workout();
+
+            switch (choice) {
+                case 1:
+                    minutes = getIntResponse(reader,"How many minutes was your workout? (decimal answer) ");
+                    System.out.println("What was the intensity? ");
+                    intensity = reader.next();
+                    System.out.println("What was the time? ");
+                    time = reader.next();
+                    System.out.println("What was the date? ");
+                    date = reader.next(); 
+                    wo.recordWorkout(minutes, intensity, time, date);
+                    System.out.println("Workout logged successfully.");
+                    return;
+                case 2:
+                    wo.suggestWorkout();
+                    return;
+                case 3:
+                    return; // return to main menu
+                default:
+                    System.out.println("Invalid choice. Please enter a number between 1 and 3.");
+            }
+        }
+      }
+    
     // 2. add new food
     public static void addNewFood(Scanner reader) {
         System.out.println("\n\n -- Add new food --");
@@ -61,13 +83,13 @@ public class MenuActions {
         ShoppingList sl = new ShoppingList();
         
         while (true) {
-            System.out.println("\n=== Shopping List Manager ===");
+            System.out.println("\n=== Shopping List ===");
             System.out.println("1. Create a new shopping list");
             System.out.println("2. Add an item to a shopping list");
             System.out.println("3. Display a shopping list");
             System.out.println("4. Display all shopping lists");
             System.out.println("5. Delete a shopping list");
-            System.out.println("6. Exit");
+            System.out.println("6. Exit and return to main menu");
             System.out.print("\nEnter your choice: ");
             
             int choice = reader.nextInt();
@@ -106,8 +128,7 @@ public class MenuActions {
                     
                 case 6:
                     System.out.println("Exiting...");
-                    System.exit(0);
-                    break;
+                    return;
                     
                 default:
                     System.out.println("Invalid choice.");

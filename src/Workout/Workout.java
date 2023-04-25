@@ -12,13 +12,15 @@ public class Workout {
     private String date;
     Goal.WeightGoal gw;
 
-    public Workout(int minutes, String intensity, String time, String date) {
+    public Workout(){}
+    public void recordWorkout(int minutes, String intensity, String time, String date) {
        this.minutes = minutes;
        this.intensity = intensity;
        this.time = time;
        this.date = date;
-
     }
+    
+    
 
     public void LogWorkout() {
         Scanner input = new Scanner(System.in);
@@ -45,7 +47,9 @@ public class Workout {
       } else if (gw ==  Goal.WeightGoal.GAIN){
          System.out.println("Warm up: 5-minute walk or jog. \nBarbell squats: 3 sets of 8 reps. \nBarbell bench press: 3 sets of 8 reps. \nDumbbell lunges: 3 sets of 10 reps.\nSeated cable rows: 3 sets of 10 reps.\nBarbell bicep curls: 3 sets of 10 reps.\nTricep pushdowns: 3 sets of 10 reps.\nCool down: 5-minute walk or jog.");
       
-      }     
+      } else {
+               System.out.println("Barbell bench press: 3 sets of 8-12 rep. \nBent-over rows: 3 sets of 8-12 reps.\nDumbbell shoulder press: 3 sets of 8-12 reps.\nBicep curls: 3 sets of 8-12 reps.\nTricep extensions: 3 sets of 8-12 reps");
 
+      }
     }
 }

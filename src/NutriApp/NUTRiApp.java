@@ -2,11 +2,13 @@ package NutriApp;
 
 import PersonalInfo.*;
 import Workout.*;
-// import Registration.*;
+//import Registration.*;
 
 import java.util.Scanner;
+import Register.*;
 
 import static NutriApp.MenuActions.*;
+import Register.LoginSystem;
 
 public class NUTRiApp {
 
@@ -14,6 +16,8 @@ public class NUTRiApp {
      * Prompts the user to register if they are a new user and
      * save their account, logging them in
      */
+     
+    
     public static void register(Scanner reader, Account user) {
         // TODO: make any PTUI changes you want
 
@@ -28,6 +32,11 @@ public class NUTRiApp {
         String birthdate;
         double targetWeight;
         Goal.WeightGoal goalType;
+        
+        System.out.print("Enter your desired username: ");
+        String newUsername = reader.next();
+        System.out.print("Enter your desired password: ");
+        String newPassword = reader.next();
 
         //get data from user
         System.out.println("\n - What is your name? ");
@@ -64,16 +73,18 @@ public class NUTRiApp {
      */
     public static void login(Scanner reader, Account user) {
         // TODO: make any PTUI changes you want
-
+        LoginSystem ls = new LoginSystem();
+        
         System.out.println("\n\n -- Login --");
 
         String username;
         String password;
 
-        System.out.println("Enter your username: ");
+        System.out.print("Enter your username: ");
         username = reader.next();
-        System.out.println("Enter your password: ");
+        System.out.print("Enter your password: ");
         password = reader.next();
+        ls.login(username, password);
 
         System.out.println("Logging you in...");
         // TODO: make PTUI work with back end
